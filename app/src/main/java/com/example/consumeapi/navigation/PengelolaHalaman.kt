@@ -4,33 +4,42 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
-import com.example.consumeapi.ui.DestinasiHome
-import com.example.consumeapi.ui.HomeScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
+import com.example.consumeapi.ui.home.screen.DestinasiHome
+import com.example.consumeapi.ui.home.screen.HomeScreen
+import com.example.consumeapi.ui.kontak.screen.DestinasiEntry
+import com.example.consumeapi.ui.kontak.screen.EntryKontakScreen as EntryKontakScreen
 
 @Composable
-fun PengelolaHalaman(navControler : NavHostController = rememerberNavController()){
-NavHost(
-    navControler = navControler,
-    startDestination = DestinasiHome.route,
-    modifier = Modifier,
+fun PengelolaHalaman(navController : NavHostController = rememberNavController()) {
+
+NavHost(navController = navController,
+    startDestination =DestinasiHome.route,
+    modifier =Modifier
 ){
-    composable(DestinasiHome.route){
+    composable(DestinasiHome.route) {
         HomeScreen(navigateToItemEntry = {
-            navControler.navigate(DestinasiEntry.route)
+            navController.navigate(DestinasiEntry.route)
         },
             onDetailClick = {
 
             })
-}
-    composable(DestinasiEntry.route){
-        EntryKontakScreen(navigateBack = {
-            navControler.navigate(
-                DestinasiHome.route
-            ){
-                popUpTo(DestinasiHome.route){
-                    inclusive = true
+    }
+        composable(DestinasiEntry.route){
+            EntryKontakScreen(navigateBack = {
+                navController.navigate(
+                    DestinasiHome.route
+                ) {
+                    popUpTo(DestinasiHome.route){
+                        inclusive = true
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 }
+}
+
