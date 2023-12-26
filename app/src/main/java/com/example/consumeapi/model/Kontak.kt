@@ -9,8 +9,10 @@ data class Kontak(
     val id: Int,
     val nama: String,
     @SerialName("nohp")
-    val telpon:  String,
+    val nohp:  String,
     @SerialName("email")
-    val alamat: String,
+    val email: String,
+
+
 
 )
